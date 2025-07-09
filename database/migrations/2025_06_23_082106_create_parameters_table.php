@@ -28,6 +28,8 @@ return new class extends Migration
 
             $table->text('keterangan')->nullable();
 
+            $table->boolean('disembunyikan')->default(0);
+
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

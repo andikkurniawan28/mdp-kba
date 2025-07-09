@@ -50,13 +50,11 @@
                 serverSide: true,
                 ajax: "{{ route('parameter.index') }}",
                 order: [
-                    [1, 'asc']
+                    [0, 'asc']
                 ],
                 columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
+                        data: 'id',
+                        name: 'id'
                     },
                     {
                         data: 'nama',

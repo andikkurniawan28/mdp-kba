@@ -83,6 +83,7 @@ class MonitoringPerKategoriController extends Controller
             'zona:id,kode,nama',
             'parameter_titik_pengamatans.parameter' => function ($query) use ($kategori_parameter_id) {
                 $query->where('kategori_parameter_id', $kategori_parameter_id)
+                    ->where('disembunyikan', 0)
                     ->with('satuan:id,simbol');
             }
         ])
@@ -134,8 +135,8 @@ class MonitoringPerKategoriController extends Controller
                     $values = $monitorings->pluck($field)->filter(fn($val) => is_numeric($val));
 
                     $aggregated[$field] = match (strtolower($param['metode_agregasi'])) {
-                        'sum' => $values->sum(),
-                        'avg', 'average' => $values->avg(),
+                        'sum' => number_format($values->sum(),2),
+                        'avg', 'average' => number_format($values->avg(),2),
                         'count' => $values->count(),
                         default => null,
                     };

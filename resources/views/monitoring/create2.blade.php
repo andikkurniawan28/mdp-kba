@@ -9,6 +9,13 @@
                 <form action="{{ route('monitoring.store') }}" method="POST">
                     @csrf
 
+                    {{-- Ini hidden khusus untuk input flow --}}
+                    <input type="hidden" id="totalizer_nmp_terakhir" value="{{ $flow_terakhir->param2 ?? 0 }}">
+                    <input type="hidden" id="totalizer_nmg_terakhir" value="{{ $flow_terakhir->param3 ?? 0 }}">
+                    <input type="hidden" id="totalizer_imb_terakhir" value="{{ $flow_terakhir->param4 ?? 0 }}">
+                    <input type="hidden" id="totalizer_d1_terakhir" value="{{ $flow_terakhir->param5 ?? 0 }}">
+                    <input type="hidden" id="totalizer_d2_terakhir" value="{{ $flow_terakhir->param6 ?? 0 }}">
+
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="periode" class="form-label">Periode</label>
@@ -42,6 +49,7 @@
                                     @if ($parameter->jenis === 'kuantitatif')
                                         <sub>({{ $parameter->satuan->simbol }})</sub>
                                     @endif
+                                    ({{ $parameter->nama }})
                                 </label>
                                 @php
                                     $aksesKey = 'akses_input_param' . $parameter->id;
@@ -140,4 +148,6 @@
             border: 0;
         }
     </style>
+
+    @include('monitoring.perhitungan')
 @endsection

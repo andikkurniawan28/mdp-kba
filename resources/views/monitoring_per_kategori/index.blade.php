@@ -65,7 +65,7 @@
                                 let row = `<td><small>${formatJam(m.jam)}</small></td>`;
                                 tp.parameters.forEach(p => {
                                     const val = m['param' + p.id];
-                                    row += `<td>${val ?? '-'}</td>`;
+                                    row += `<td><small>${val ?? '-'}</small></td>`;
                                 });
                                 bodyRows += `<tr>${row}</tr>`;
                             });

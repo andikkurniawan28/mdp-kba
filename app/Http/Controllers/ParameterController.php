@@ -91,9 +91,9 @@ class ParameterController extends Controller
         }
 
         // 0) Beri default jika tidak dikirim
-        /* $request->merge([
-            'jenis' => $request->input('jenis', 'kuantitatif')
-        ]); */
+        $request->merge([
+            'disembunyikan' => $request->input('disembunyikan', '0')
+        ]);
 
         // 1) Validasi
         $data = $request->validate([
@@ -101,6 +101,7 @@ class ParameterController extends Controller
             'simbol'                => 'required|string|unique:parameters,simbol',
             'kategori_parameter_id' => 'required|exists:kategori_parameters,id',
             'jenis'                 => 'required|in:kuantitatif,kualitatif_opsional,kualitatif_entry',
+            'disembunyikan'         => 'required|in:1,0',
             'satuan_id'             => 'nullable|required_if:jenis,kuantitatif|exists:satuans,id',
             'metode_agregasi'       => 'nullable|required_if:jenis,kuantitatif|in:sum,avg,count',
             'pilihan_kualitatif'    => 'nullable|array',
@@ -114,6 +115,7 @@ class ParameterController extends Controller
             'simbol'                => $data['simbol'],
             'kategori_parameter_id' => $data['kategori_parameter_id'],
             'jenis'                 => $data['jenis'],
+            'disembunyikan'         => $data['disembunyikan'],
             'satuan_id'             => $data['jenis'] === 'kuantitatif' ? $data['satuan_id'] : null,
             'metode_agregasi'       => $data['jenis'] === 'kuantitatif' ? $data['metode_agregasi'] : null,
             'keterangan'            => $data['keterangan'] ?? null,
@@ -174,9 +176,9 @@ class ParameterController extends Controller
             return $response;
         }
 
-        /* $request->merge([
-            'jenis' => $request->input('jenis', $parameter->jenis),
-        ]); */
+        $request->merge([
+            'disembunyikan' => $request->input('disembunyikan', $parameter->disembunyikan),
+        ]);
 
         // 1) Validasi input, pastikan `jenis` wajib
         $data = $request->validate([
@@ -184,6 +186,7 @@ class ParameterController extends Controller
             'simbol'                => 'required|string|max:50|unique:parameters,simbol,' . $parameter->id,
             'kategori_parameter_id' => 'required|exists:kategori_parameters,id',
             'jenis'                 => 'required|in:kuantitatif,kualitatif_opsional,kualitatif_entry',
+            'disembunyikan'         => 'required|in:1,0',
             'satuan_id'             => 'nullable|required_if:jenis,kuantitatif|exists:satuans,id',
             'metode_agregasi'       => 'nullable|required_if:jenis,kuantitatif|in:sum,avg,count',
             'keterangan'            => 'nullable|string',
@@ -197,6 +200,7 @@ class ParameterController extends Controller
             'simbol'                => $data['simbol'],
             'kategori_parameter_id' => $data['kategori_parameter_id'],
             'jenis'                 => $data['jenis'],
+            'disembunyikan'         => $data['disembunyikan'],
             'satuan_id'             => $data['jenis'] === 'kuantitatif' ? $data['satuan_id'] : null,
             'metode_agregasi'       => $data['jenis'] === 'kuantitatif' ? $data['metode_agregasi'] : null,
             'keterangan'            => $data['keterangan'] ?? null,

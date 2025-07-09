@@ -92,6 +92,16 @@
                             <textarea name="keterangan" class="form-control" rows="2"></textarea>
                         </div>
 
+                        <!-- Toggle Disembunyikan -->
+                        <div class="col-md-4">
+                            <label class="form-label d-block">Disembunyikan</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="disembunyikanToggle">
+                                <input type="hidden" name="disembunyikan" id="disembunyikanHidden" value="0">
+                                <label class="form-check-label" for="disembunyikanToggle">Sembunyikan Parameter</label>
+                            </div>
+                        </div>
+
                         <!-- Tombol -->
                         <div class="col-12 text-end">
                             <button class="btn btn-primary"><i class="bi bi-save"></i> Simpan</button>
@@ -148,7 +158,12 @@
             }
 
             $('#jenisSelect').change(toggleJenis);
+
             toggleJenis(); // panggil saat awal load
+
+            $('#disembunyikanToggle').on('change', function () {
+                $('#disembunyikanHidden').val(this.checked ? '1' : '0');
+            });
         });
     </script>
 @endsection

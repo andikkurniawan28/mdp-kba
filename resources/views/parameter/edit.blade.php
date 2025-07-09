@@ -102,6 +102,18 @@
                             <textarea name="keterangan" class="form-control" rows="2">{{ old('keterangan', $parameter->keterangan) }}</textarea>
                         </div>
 
+                        <!-- Toggle Disembunyikan -->
+                        <div class="col-md-4">
+                            <label class="form-label d-block">Disembunyikan</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="disembunyikanToggle"
+                                    {{ old('disembunyikan', $parameter->disembunyikan) == 1 ? 'checked' : '' }}>
+                                <input type="hidden" name="disembunyikan" id="disembunyikanHidden"
+                                    value="{{ old('disembunyikan', $parameter->disembunyikan) }}">
+                                <label class="form-check-label" for="disembunyikanToggle">Sembunyikan Parameter</label>
+                            </div>
+                        </div>
+
                         <!-- Tombol -->
                         <div class="col-12 text-end">
                             <button class="btn btn-primary">
@@ -152,6 +164,10 @@
 
             $('#jenisSelect').change(toggleJenis);
             toggleJenis(); // initialize on load
+
+            $('#disembunyikanToggle').on('change', function() {
+                $('#disembunyikanHidden').val(this.checked ? '1' : '0');
+            });
         });
     </script>
 @endsection
