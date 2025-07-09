@@ -1,66 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📊 Monitoring Data Platform (MDP) - PG Kebon Agung
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)](https://laravel.com)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-^8.1-blue.svg)](https://www.php.net/)
+[![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
+[![Maintained](https://img.shields.io/badge/maintained-yes-green.svg)]()
+[![Issues](https://img.shields.io/github/issues/username/mdp-pgkebonagung)](https://github.com/username/mdp-pgkebonagung/issues)
 
-## About Laravel
+> Aplikasi monitoring operasional dan pencatatan data terintegrasi untuk PG Kebon Agung.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🎯 Tujuan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Monitoring Data Platform (MDP) adalah aplikasi berbasis web untuk membantu pencatatan, pemantauan, dan pengelolaan parameter penting proses industri secara digital dan efisien.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🏗️ Fitur Utama
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🔍 **Monitoring Parameter**
+  - Per kategori, per zona, atau semua titik
+  - Tabel + visualisasi + agregasi data
+- 📝 **Input Data**
+  - Dukungan parameter kuantitatif & kualitatif
+  - Input bertahap per titik/jam
+  - Validasi dan log perubahan
+- ⚙️ **Manajemen Data**
+  - Parameter, zona, titik, satuan, pilihan nilai
+  - Role-based access (RBAC)
+- 📈 **Perhitungan Otomatis**
+  - HK dan Rendemen dari Brix & Pol
+  - Perhitungan flow berdasarkan totalizer
+- 📤 **Ekspor Excel**
+  - Monitoring dan Rekap Agregasi
+- 🔒 **Audit Trail**
+  - Catatan siapa input, kapan, dan apa yang diubah
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🧰 Teknologi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Komponen     | Teknologi                |
+|--------------|---------------------------|
+| Backend      | Laravel 10.x              |
+| Frontend     | Blade + Bootstrap 5       |
+| Database     | MySQL / MariaDB           |
+| UI Library   | jQuery, Select2, Chart.js |
+| Export Tool  | SheetJS (XLSX)            |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## ⚙️ Instalasi Developer
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+git clone https://github.com/username/mdp-pgkebonagung.git
+cd mdp-pgkebonagung
+composer install
+cp .env.example .env
+php artisan key:generate
+# Atur koneksi database di .env
+php artisan migrate --seed
+php artisan serve
