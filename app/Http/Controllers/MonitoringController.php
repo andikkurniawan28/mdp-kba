@@ -28,7 +28,9 @@ class MonitoringController extends Controller
                 ->addIndexColumn()
 
                 // Nama titik pengamatan
-                ->addColumn('titik_pengamatan_nama', fn($row) =>
+                ->addColumn(
+                    'titik_pengamatan_nama',
+                    fn($row) =>
                     $row->titik_pengamatan->nama ?? '-'
                 )
 
@@ -105,7 +107,7 @@ class MonitoringController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeOld(Request $request)
     {
         if ($response = $this->checkIzin('akses_tambah_input_monitoring')) {
             return $response;
@@ -175,6 +177,72 @@ class MonitoringController extends Controller
             ->route('monitoring.index')
             ->with('success', 'Data monitoring berhasil disimpan atau diperbarui.');
     }
+
+    public function store(Request $request)
+    {
+        if ($response = $this->checkIzin('akses_tambah_input_monitoring')) {
+            return $response;
+        }
+
+        $request->validate([
+            'periode'               => 'required|date',
+            'jam'                   => 'required|date_format:H:i',
+            'titik_pengamatan_id'   => 'required|exists:titik_pengamatans,id',
+        ]);
+
+        // Ambil hanya field paramX dari request
+        $inputParams = collect($request->all())
+            ->filter(fn($val, $key) => Str::startsWith($key, 'param') && $val !== null && $val !== '');
+
+        // Ambil semua ID param yang dikirim
+        $paramIds = $inputParams->keys()
+            ->map(fn($k) => (int) Str::after($k, 'param'))
+            ->all();
+
+        // Ambil nama parameter dari DB untuk keperluan log
+        $parameterNames = Parameter::whereIn('id', $paramIds)
+            ->pluck('nama', 'id'); // contoh: ['1' => 'pH', '2' => 'Suhu']
+
+        $conditions = [
+            'periode'             => $request->periode,
+            'jam'                 => $request->jam,
+            'titik_pengamatan_id' => $request->titik_pengamatan_id,
+        ];
+
+        // Cek apakah data monitoring sudah ada
+        $monitoring = Monitoring::where($conditions)->first();
+
+        if ($monitoring) {
+            // Update hanya field paramX yang dikirim
+            $monitoring->fill($inputParams->toArray());
+            $monitoring->save();
+        } else {
+            // Gabungkan kondisi + paramX dan buat data baru
+            $monitoring = Monitoring::create(array_merge($conditions, $inputParams->toArray()));
+        }
+
+        // Buat log jika ada paramX yang dikirim
+        $logs = [];
+
+        foreach ($inputParams as $key => $value) {
+            $paramId   = (int) Str::after($key, 'param');
+            $namaParam = $parameterNames->get($paramId, 'Tidak diketahui');
+            $logs[] = "Input $namaParam dengan nilai: $value";
+        }
+
+        if (!empty($logs)) {
+            InputMonitoringLog::create([
+                'user_id'       => auth()->id(),
+                'monitoring_id' => $monitoring->id,
+                'keterangan'    => implode('; ', $logs),
+            ]);
+        }
+
+        return redirect()
+            ->route('monitoring.index')
+            ->with('success', 'Data monitoring berhasil disimpan atau diperbarui.');
+    }
+
 
     /**
      * Display the specified resource.

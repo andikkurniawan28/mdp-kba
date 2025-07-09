@@ -126,6 +126,4 @@
             });
         });
     </script>
-
-    @include('monitoring.perhitungan')
 @endsection

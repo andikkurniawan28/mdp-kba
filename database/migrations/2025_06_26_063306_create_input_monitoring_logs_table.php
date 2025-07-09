@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('input_monitoring_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('monitoring_id')->constrained();
+            $table->foreignId('monitoring_id')->constrained()->onDelete('cascade');
             $table->text('keterangan');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

@@ -218,7 +218,10 @@ class DatabaseSeeder extends Seeder
 
         // Insert kategori parameter
         KategoriParameter::insert([
+            ['nama' => 'Analisa Lab'],
             ['nama' => 'Proses'],
+            ['nama' => 'Penggunaan Bahan'],
+            ['nama' => 'Taksasi Proses'],
             ['nama' => 'Utilitas'],
             // ['nama' => 'Lingkungan'],
         ]);
@@ -456,7 +459,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Brix',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'brix',
                 'keterangan' => '%Brix',
@@ -465,7 +468,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Pol',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'pol',
                 'keterangan' => '%Pol',
@@ -474,7 +477,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Pol Baca',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Derajat Pol'],
                 'simbol' => 'polB',
                 'keterangan' => 'Pol Baca',
@@ -483,7 +486,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'HK',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'hk',
                 'keterangan' => '%HK',
@@ -492,7 +495,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Rendemen',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'r',
                 'keterangan' => 'Rendemen',
@@ -501,7 +504,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'ICUMSA',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['ICUMSA'],
                 'simbol' => 'IU',
                 'keterangan' => 'Warna Larutan',
@@ -510,7 +513,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Moisture Content',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'mc',
                 'keterangan' => 'Kadar Cairan',
@@ -519,7 +522,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Zat Kering',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'zk',
                 'keterangan' => 'Zat Kering',
@@ -528,7 +531,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'CaO',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'caO',
                 'keterangan' => 'Kadar CaO',
@@ -537,7 +540,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Keasaman',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['pH'],
                 'simbol' => 'pH',
                 'keterangan' => 'Keasaman',
@@ -546,7 +549,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Turbidity',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Nephelometric Turbidity Unit'],
                 'simbol' => 'turb',
                 'keterangan' => 'Kekeruhan',
@@ -555,7 +558,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'TDS',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['PPM'],
                 'simbol' => 'tds',
                 'keterangan' => 'Jumlah Padatan Terlarut',
@@ -564,7 +567,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Hardness',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['PPM'],
                 'simbol' => 'sadah',
                 'keterangan' => 'Kesadahan',
@@ -573,7 +576,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Fosfor Pentoksida',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['PPM'],
                 'simbol' => 'p2O5',
                 'keterangan' => 'Fosfor Pentoksida',
@@ -582,7 +585,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Sulfur Dioksida',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'so2',
                 'keterangan' => 'Sulfur Dioksida',
@@ -591,7 +594,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Sugar Diameter',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Milimeter'],
                 'simbol' => 'bjb',
                 'keterangan' => 'Diameter Kristal',
@@ -600,7 +603,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Total Sugar As Invert',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'tsai',
                 'keterangan' => 'Total Sugar As Invert',
@@ -609,7 +612,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Succrose',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'succrose',
                 'keterangan' => 'Succrose',
@@ -618,7 +621,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Fructose',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'fructose',
                 'keterangan' => 'Fructose',
@@ -627,7 +630,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Glucose',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'glucose',
                 'keterangan' => 'Glucose',
@@ -636,7 +639,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Temperatur',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Celcius'],
                 'simbol' => 'suhu',
                 'keterangan' => 'Temperatur',
@@ -645,7 +648,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Preparation Index',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'pi',
                 'keterangan' => 'Preparation Index',
@@ -654,7 +657,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Kadar Sabut',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'sabut',
                 'keterangan' => 'Kadar Sabut',
@@ -663,7 +666,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Kadar Kapur',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'kapur',
                 'keterangan' => 'Kadar Kapur',
@@ -672,7 +675,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Pol Ampas',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'polA',
                 'keterangan' => 'Pol Ampas',
@@ -681,7 +684,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Fosfat',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'fosfat',
                 'keterangan' => 'Kadar Fosfat',
@@ -690,7 +693,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Gula Reduksi',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'gured',
                 'keterangan' => 'Gula Reduksi',
@@ -699,7 +702,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Saccharosa',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'saccharosa',
                 'keterangan' => 'Saccharosa',
@@ -708,7 +711,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Optical Density',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'od',
                 'keterangan' => 'Optical Density',
@@ -717,7 +720,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Dextran',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'dext',
                 'keterangan' => 'Dextran',
@@ -726,7 +729,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Berat Kg',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Kilogram'],
                 'simbol' => 'berat',
                 'keterangan' => 'Berat dalam Kg',
@@ -735,7 +738,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Dispersitas',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'disp',
                 'keterangan' => 'Dispersitas',
@@ -744,7 +747,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Silika',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'silika',
                 'keterangan' => 'Silika',
@@ -752,8 +755,8 @@ class DatabaseSeeder extends Seeder
                 'jenis' => 'kuantitatif',
             ],
             [
-                'nama' => '%Ampas',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'nama' => 'Ampas',
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'ampas',
                 'keterangan' => '%Ampas',
@@ -762,7 +765,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nama' => 'Brixwegger',
-                'kategori_parameter_id' => $kategori['Proses'],
+                'kategori_parameter_id' => $kategori['Analisa Lab'],
                 'satuan_id' => $satuan['Persen'],
                 'simbol' => 'brixw',
                 'keterangan' => 'Brixwegger',
@@ -787,17 +790,18 @@ class DatabaseSeeder extends Seeder
             ['kode' => 'KTL', 'nama' => 'Ketel'],
             ['kode' => 'UPLC', 'nama' => 'UPLC'],
             ['kode' => 'TNGK', 'nama' => 'Tangki Tetes'],
+            ['kode' => 'OTH', 'nama' => 'Lain-lain'],
         ]);
 
         $zona = Zona::pluck('id', 'kode');
         TitikPengamatan::insert([
             ['urutan' => 1, 'nama' => 'Material Balance', 'kode' => 'MB', 'zona_id' => $zona['GIL'], 'keterangan' => 'Material Balance'],
-            ['urutan' => 2, 'nama' => 'Gilingan 1', 'kode' => 'G1', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Gilingan 1'],
-            ['urutan' => 3, 'nama' => 'Gilingan 2', 'kode' => 'G2', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Gilingan 2'],
-            ['urutan' => 4, 'nama' => 'Gilingan 3', 'kode' => 'G3', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Gilingan 3'],
-            ['urutan' => 5, 'nama' => 'Gilingan 4', 'kode' => 'G4', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Gilingan 4'],
-            ['urutan' => 6, 'nama' => 'Gilingan 5', 'kode' => 'G5', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Gilingan 5'],
-            ['urutan' => 7, 'nama' => 'Cane Cutter', 'kode' => 'CC', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Pencacah Tebu'],
+            ['urutan' => 2, 'nama' => 'Nira Gilingan 1', 'kode' => 'NPP', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 1'],
+            ['urutan' => 3, 'nama' => 'Nira Gilingan 2', 'kode' => 'NG2', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 2'],
+            ['urutan' => 4, 'nama' => 'Nira Gilingan 3', 'kode' => 'NG3', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 3'],
+            ['urutan' => 5, 'nama' => 'Nira Gilingan 4', 'kode' => 'NG4', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 4'],
+            ['urutan' => 6, 'nama' => 'Nira Gilingan 5', 'kode' => 'NG5', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 5'],
+            // ['urutan' => 7, 'nama' => 'Cane Cutter', 'kode' => 'CC', 'zona_id' => $zona['GIL'], 'keterangan' => 'Mesin Pencacah Tebu'],
             ['urutan' => 8, 'nama' => 'Nira Mentah', 'kode' => 'NM', 'zona_id' => $zona['PMN'], 'keterangan' => 'Nira Mentah'],
             ['urutan' => 9, 'nama' => 'Nira Reaction', 'kode' => 'NR', 'zona_id' => $zona['PMN'], 'keterangan' => 'Nira di Reaction Tank'],
             ['urutan' => 10, 'nama' => 'Nira Tapis', 'kode' => 'NT', 'zona_id' => $zona['PMN'], 'keterangan' => 'Nira Tapis'],
@@ -893,28 +897,28 @@ class DatabaseSeeder extends Seeder
             ['Material Balance', 'Nira Mentah Pemurnian % Tebu'],
             ['Material Balance', 'Nira Mentah Gilingan % Tebu'],
             ['Material Balance', 'Imbibisi % Tebu'],
-            ['Gilingan 1', 'Brix'],
-            ['Gilingan 1', 'Pol'],
-            ['Gilingan 1', 'HK'],
-            ['Gilingan 1', 'Keasaman'],
-            ['Gilingan 1', 'Rendemen'],
-            ['Gilingan 1', 'ICUMSA'],
-            ['Gilingan 2', 'Brix'],
-            ['Gilingan 2', 'Pol'],
-            ['Gilingan 2', 'HK'],
-            ['Gilingan 2', 'Keasaman'],
-            ['Gilingan 3', 'Brix'],
-            ['Gilingan 3', 'Pol'],
-            ['Gilingan 3', 'HK'],
-            ['Gilingan 3', 'Keasaman'],
-            ['Gilingan 4', 'Brix'],
-            ['Gilingan 4', 'Pol'],
-            ['Gilingan 4', 'HK'],
-            ['Gilingan 4', 'Keasaman'],
-            ['Gilingan 5', 'Brix'],
-            ['Gilingan 5', 'Pol'],
-            ['Gilingan 5', 'HK'],
-            ['Gilingan 5', 'Keasaman'],
+            ['Nira Gilingan 1', 'Brix'],
+            ['Nira Gilingan 1', 'Pol'],
+            ['Nira Gilingan 1', 'HK'],
+            ['Nira Gilingan 1', 'Keasaman'],
+            ['Nira Gilingan 1', 'Rendemen'],
+            ['Nira Gilingan 1', 'ICUMSA'],
+            ['Nira Gilingan 2', 'Brix'],
+            ['Nira Gilingan 2', 'Pol'],
+            ['Nira Gilingan 2', 'HK'],
+            ['Nira Gilingan 2', 'Keasaman'],
+            ['Nira Gilingan 3', 'Brix'],
+            ['Nira Gilingan 3', 'Pol'],
+            ['Nira Gilingan 3', 'HK'],
+            ['Nira Gilingan 3', 'Keasaman'],
+            ['Nira Gilingan 4', 'Brix'],
+            ['Nira Gilingan 4', 'Pol'],
+            ['Nira Gilingan 4', 'HK'],
+            ['Nira Gilingan 4', 'Keasaman'],
+            ['Nira Gilingan 5', 'Brix'],
+            ['Nira Gilingan 5', 'Pol'],
+            ['Nira Gilingan 5', 'HK'],
+            ['Nira Gilingan 5', 'Keasaman'],
             ['Cane Cutter', 'Preparation Index'],
             ['Cane Cutter', 'Kadar Sabut'],
             ['Nira Mentah', 'Brix'],
@@ -927,7 +931,7 @@ class DatabaseSeeder extends Seeder
             ['Nira Mentah', 'Fosfat'],
             ['Nira Mentah', 'Gula Reduksi'],
             ['Nira Mentah', 'Dextran'],
-            ['Nira Mentah', '%Ampas'],
+            ['Nira Mentah', 'Ampas'],
             ['Nira Reaction', 'Brix'],
             ['Nira Reaction', 'Pol'],
             ['Nira Reaction', 'HK'],
