@@ -61,4 +61,8 @@ class Parameter extends Model
         });
     }
 
+    public function parameter_titik_pengamatans(){
+        return $this->hasMany(ParameterTitikPengamatan::class);
+    }
+
 }

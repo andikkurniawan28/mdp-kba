@@ -262,7 +262,7 @@ class MonitoringController extends Controller
             return $response;
         }
 
-        return view('monitoring.edit', [
+        return view('monitoring.edit2', [
             'monitoring' => $monitoring,
             'titik_pengamatans' => TitikPengamatan::orderBy('urutan', 'asc')->get(),
             'parameters' => Parameter::all(),

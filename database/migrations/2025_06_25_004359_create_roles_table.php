@@ -53,6 +53,8 @@ return new class extends Migration
             $table->boolean('akses_tambah_input_monitoring')->default(1);
             $table->boolean('akses_edit_input_monitoring')->default(1);
             $table->boolean('akses_hapus_input_monitoring')->default(1);
+            $table->boolean('akses_cetak_barcode')->default(1);
+            $table->boolean('akses_laporan_shift')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

@@ -84,10 +84,26 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold" href="#" id="cetakBarcodeMenu" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-upc-scan"></i> Barcode
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="cetakBarcodeMenu">
+                            <li>
+                                @foreach($semua_zona as $zona)
+                                <a class="dropdown-item" href="{{ route('cetak_barcode.index', $zona->id) }}">
+                                    <i class="bi bi-upc-scan"></i> {{ $zona->nama }}
+                                </a>
+                                @endforeach
+                            </li>
+                        </ul>
+                    </li>
                 {{-- @endif --}}
 
                 {{-- MENU LAPORAN --}}
-                {{-- @if (auth()->check() && auth()->user()->role->izin_akses_laporan)
+                {{-- @if (auth()->check() && auth()->user()->role->izin_akses_laporan) --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" id="laporanMenu" role="button"
                             data-bs-toggle="dropdown">
@@ -95,13 +111,13 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="laporanMenu">
                             <li>
-                                <span class="dropdown-item text-muted">
-                                    <i class="bi bi-clock-history"></i> Coming soon...
-                                </span>
+                                <a class="dropdown-item" href="{{ route('laporan_shift.index') }}">
+                                    <i class="bi bi-chart-line"></i> Laporan Shift
+                                </a>
                             </li>
                         </ul>
                     </li>
-                @endif --}}
+                {{-- @endif --}}
 
                 {{-- MENU MASTER --}}
                 {{-- @if (auth()->check() && auth()->user()->role->izin_akses_master) --}}

@@ -7,18 +7,20 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DokumentasiPengembangController;
-use App\Http\Controllers\EksternalInputController;
-use App\Http\Controllers\InputMonitoringLogController;
-use App\Http\Controllers\JenisPilihanKualitatifController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\CetakBarcodeController;
+use App\Http\Controllers\LaporanShiftController;
 use App\Http\Controllers\MonitoringAllController;
+use App\Http\Controllers\EksternalInputController;
 use App\Http\Controllers\TitikPengamatanController;
 use App\Http\Controllers\KategoriParameterController;
 use App\Http\Controllers\MonitoringPerZonaController;
+use App\Http\Controllers\InputMonitoringLogController;
 use App\Http\Controllers\MonitoringPerTitikController;
+use App\Http\Controllers\DokumentasiPengembangController;
 use App\Http\Controllers\MonitoringPerKategoriController;
+use App\Http\Controllers\JenisPilihanKualitatifController;
 use App\Http\Controllers\UbahUrutanTitikPengamatanController;
 
 /*
@@ -59,3 +61,7 @@ Route::get('/monitoring_per_titik/data/{titik_pengamatan_id}', [MonitoringPerTit
 Route::get('/input_monitoring_log', [InputMonitoringLogController::class, 'index'])->name('input_monitoring_log')->middleware(['auth']);
 Route::get('/eksternal_input/{periode}/{jam}/{titik_pengamatan_id}/{parameter_id}/{user_id}/{value}', EksternalInputController::class)->name('eksternal_input');
 Route::get('/dokumentasi_pengembang', DokumentasiPengembangController::class)->name('dokumentasi_pengembang')->middleware(['auth']);
+Route::get('/cetak_barcode/{zona_id}', [CetakBarcodeController::class, 'index'])->name('cetak_barcode.index')->middleware(['auth']);
+Route::post('/cetak_barcode', [CetakBarcodeController::class, 'proses'])->name('cetak_barcode.proses')->middleware(['auth']);
+Route::get('/laporan_shift/', [LaporanShiftController::class, 'index'])->name('laporan_shift.index')->middleware(['auth']);
+Route::get('/laporan_shift/{tanggal}/{shift}', [LaporanShiftController::class, 'proses'])->name('laporan_shift.proses')->middleware(['auth']);

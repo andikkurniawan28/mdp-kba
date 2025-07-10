@@ -41,10 +41,10 @@ class RoleController extends Controller
                 })
                 ->addColumn('izin', function ($row) use ($parameters, $kategori_parameters, $zonas) {
                     $izinList = [
-                        'akses_master_daftar_kategori_parameter' => 'Daftar Kategori Parameter',
-                        'akses_master_tambah_kategori_parameter' => 'Tambah Kategori Parameter',
-                        'akses_master_edit_kategori_parameter' => 'Edit Kategori Parameter',
-                        'akses_master_hapus_kategori_parameter' => 'Hapus Kategori Parameter',
+                        'akses_master_daftar_kategori_parameter' => 'Daftar Role',
+                        'akses_master_tambah_kategori_parameter' => 'Tambah Role',
+                        'akses_master_edit_kategori_parameter' => 'Edit Role',
+                        'akses_master_hapus_kategori_parameter' => 'Hapus Role',
                         'akses_master_daftar_satuan' => 'Daftar Satuan',
                         'akses_master_tambah_satuan' => 'Tambah Satuan',
                         'akses_master_edit_satuan' => 'Edit Satuan',
@@ -77,6 +77,8 @@ class RoleController extends Controller
                         'akses_tambah_input_monitoring' => 'Tambah Input Monitoring',
                         'akses_edit_input_monitoring' => 'Edit Input Monitoring',
                         'akses_hapus_input_monitoring' => 'Hapus Input Monitoring',
+                        'akses_cetak_barcode' => 'Cetak Barcode',
+                        'akses_laporan_shift' => 'Laporan Shift',
                     ];
 
                     $hasil = [];
@@ -184,6 +186,8 @@ class RoleController extends Controller
             'akses_tambah_input_monitoring',
             'akses_edit_input_monitoring',
             'akses_hapus_input_monitoring',
+            'akses_cetak_barcode',
+            'akses_laporan_shift',
         ];
 
         // Tambahkan parameter dinamis
@@ -282,6 +286,8 @@ class RoleController extends Controller
             'akses_tambah_input_monitoring',
             'akses_edit_input_monitoring',
             'akses_hapus_input_monitoring',
+            'akses_cetak_barcode',
+            'akses_laporan_shift',
         ];
 
         // Tambahkan izin dinamis berdasarkan parameter
@@ -324,6 +330,6 @@ class RoleController extends Controller
 
         $role->delete();
 
-        return redirect()->route('role.index')->with('success', 'Kategori Parameter berhasil dihapus.');
+        return redirect()->route('role.index')->with('success', 'Role berhasil dihapus.');
     }
 }

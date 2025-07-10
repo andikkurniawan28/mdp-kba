@@ -795,7 +795,7 @@ class DatabaseSeeder extends Seeder
 
         $zona = Zona::pluck('id', 'kode');
         TitikPengamatan::insert([
-            ['urutan' => 1, 'nama' => 'Material Balance', 'kode' => 'MB', 'zona_id' => $zona['GIL'], 'keterangan' => 'Material Balance'],
+            ['urutan' => 1, 'nama' => 'Material Balance', 'kode' => 'MB', 'zona_id' => $zona['OTH'], 'keterangan' => 'Material Balance'],
             ['urutan' => 2, 'nama' => 'Nira Gilingan 1', 'kode' => 'NPP', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 1'],
             ['urutan' => 3, 'nama' => 'Nira Gilingan 2', 'kode' => 'NG2', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 2'],
             ['urutan' => 4, 'nama' => 'Nira Gilingan 3', 'kode' => 'NG3', 'zona_id' => $zona['GIL'], 'keterangan' => 'Nira Gilingan 3'],
