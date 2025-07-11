@@ -55,6 +55,7 @@ class Role extends Model
             'akses_hapus_input_monitoring' => 'Hapus Input Monitoring',
             'akses_cetak_barcode' => 'Cetak Barcode',
             'akses_laporan_shift' => 'Laporan Shift',
+            'akses_verifikasi_mandor' => 'Verifikasi Mandor',
         ];
 
         $parameters = Parameter::select(['id', 'simbol', 'nama'])->get();
@@ -127,6 +128,7 @@ class Role extends Model
             'akses_hapus_input_monitoring',
             'akses_cetak_barcode',
             'akses_laporan_shift',
+            'akses_verifikasi_mandor',
         ];
 
         // Izin dinamis: Parameter

@@ -105,7 +105,7 @@ class MonitoringController extends Controller
         }
 
         return view('monitoring.create2', [
-            'titik_pengamatans' => TitikPengamatan::orderBy('urutan', 'asc')->get(),
+            'titik_pengamatans' => TitikPengamatan::where('aktif', 1)->orderBy('urutan', 'asc')->get(),
             'parameters' => Parameter::all(),
             // Flow Terakhir khusus untuk input flow
             'flow_terakhir' => Monitoring::where('titik_pengamatan_id', 1)->get()->last(),
@@ -272,7 +272,7 @@ class MonitoringController extends Controller
 
         return view('monitoring.edit2', [
             'monitoring' => $monitoring,
-            'titik_pengamatans' => TitikPengamatan::orderBy('urutan', 'asc')->get(),
+            'titik_pengamatans' => TitikPengamatan::where('aktif', 1)->orderBy('urutan', 'asc')->get(),
             'parameters' => Parameter::all(),
             // Flow Terakhir khusus untuk input flow
             'flow_terakhir' => Monitoring::where('titik_pengamatan_id', 1)->get()->last(),

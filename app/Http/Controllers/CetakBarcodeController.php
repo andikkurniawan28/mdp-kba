@@ -17,7 +17,7 @@ class CetakBarcodeController extends Controller
 
         $zona = Zona::select(['id', 'kode', 'nama'])->whereId($zona_id)->get()->last();
 
-        $titik_pengamatans = TitikPengamatan::select(['id', 'kode', 'nama'])->where('zona_id', $zona_id)->get();
+        $titik_pengamatans = TitikPengamatan::select(['id', 'kode', 'nama'])->where('zona_id', $zona_id)->where('aktif', 1)->get();
 
         return view('cetak_barcode.index', compact('zona', 'titik_pengamatans'));
     }

@@ -11,7 +11,7 @@ class VerifikasiMandorController extends Controller
 {
     public function index(Request $request)
     {
-        if ($response = $this->checkIzin('akses_daftar_input_monitoring')) {
+        if ($response = $this->checkIzin('akses_verifikasi_mandor')) {
             return $response;
         }
 
@@ -74,6 +74,10 @@ class VerifikasiMandorController extends Controller
 
     public function proses(Request $request)
     {
+        if ($response = $this->checkIzin('akses_verifikasi_mandor')) {
+            return $response;
+        }
+
         $ids = $request->input('monitoring_ids');
 
         if (!is_array($ids) || empty($ids)) {
