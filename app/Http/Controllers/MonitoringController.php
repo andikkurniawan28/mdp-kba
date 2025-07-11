@@ -80,7 +80,15 @@ class MonitoringController extends Controller
                     ';
                 })
 
-                ->rawColumns(['parameter', 'aksi'])
+                ->addColumn('diverifikasi', function ($row) {
+                    if ($row->diverifikasi) {
+                        return '<span class="badge bg-success">Sudah</span>';
+                    } else {
+                        return '<span class="badge bg-dark">Belum</span>';
+                    }
+                })
+
+                ->rawColumns(['parameter', 'aksi', 'diverifikasi'])
                 ->make(true);
         }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama')->unique();
             $table->text('keterangan')->nullable();
             $table->integer('lebar')->default(4);
+            $table->boolean('aktif')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

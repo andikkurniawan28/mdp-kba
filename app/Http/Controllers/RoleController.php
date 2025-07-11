@@ -20,9 +20,9 @@ class RoleController extends Controller
         }
 
         if ($request->ajax()) {
-            $parameters = Parameter::select(['id', 'nama', 'simbol'])->get();
-            $kategori_parameters = KategoriParameter::select(['id', 'nama'])->get();
-            $zonas = Zona::select(['id', 'nama'])->get();
+            // Ambil langsung daftar akses lengkap dari helper
+            $izinList = Role::semua_akses();
+
             $data = Role::query();
 
             return DataTables::of($data)
@@ -36,82 +36,18 @@ class RoleController extends Controller
                     <form action="' . $deleteUrl . '" method="POST" class="d-inline" onsubmit="return confirm(\'Hapus data ini?\')">
                         ' . csrf_field() . method_field('DELETE') . '
                         <button class="btn btn-sm btn-danger">Hapus</button>
-                    </form>
-                ';
+                    </form>';
                 })
-                ->addColumn('izin', function ($row) use ($parameters, $kategori_parameters, $zonas) {
-                    $izinList = [
-                        'akses_master_daftar_kategori_parameter' => 'Daftar Role',
-                        'akses_master_tambah_kategori_parameter' => 'Tambah Role',
-                        'akses_master_edit_kategori_parameter' => 'Edit Role',
-                        'akses_master_hapus_kategori_parameter' => 'Hapus Role',
-                        'akses_master_daftar_satuan' => 'Daftar Satuan',
-                        'akses_master_tambah_satuan' => 'Tambah Satuan',
-                        'akses_master_edit_satuan' => 'Edit Satuan',
-                        'akses_master_hapus_satuan' => 'Hapus Satuan',
-                        'akses_master_daftar_jenis_pilihan_kualitatif' => 'Daftar Jenis Pilihan Kualitatif',
-                        'akses_master_tambah_jenis_pilihan_kualitatif' => 'Tambah Jenis Pilihan Kualitatif',
-                        'akses_master_edit_jenis_pilihan_kualitatif' => 'Edit Jenis Pilihan Kualitatif',
-                        'akses_master_hapus_jenis_pilihan_kualitatif' => 'Hapus Jenis Pilihan Kualitatif',
-                        'akses_master_daftar_parameter' => 'Daftar Parameter',
-                        'akses_master_tambah_parameter' => 'Tambah Parameter',
-                        'akses_master_edit_parameter' => 'Edit Parameter',
-                        'akses_master_hapus_parameter' => 'Hapus Parameter',
-                        'akses_master_daftar_zona' => 'Daftar Zona',
-                        'akses_master_tambah_zona' => 'Tambah Zona',
-                        'akses_master_edit_zona' => 'Edit Zona',
-                        'akses_master_hapus_zona' => 'Hapus Zona',
-                        'akses_master_daftar_titik_pengamatan' => 'Daftar Titik Pengamatan',
-                        'akses_master_tambah_titik_pengamatan' => 'Tambah Titik Pengamatan',
-                        'akses_master_edit_titik_pengamatan' => 'Edit Titik Pengamatan',
-                        'akses_master_hapus_titik_pengamatan' => 'Hapus Titik Pengamatan',
-                        'akses_master_daftar_role' => 'Daftar Role',
-                        'akses_master_tambah_role' => 'Tambah Role',
-                        'akses_master_edit_role' => 'Edit Role',
-                        'akses_master_hapus_role' => 'Hapus Role',
-                        'akses_master_daftar_user' => 'Daftar User',
-                        'akses_master_tambah_user' => 'Tambah User',
-                        'akses_master_edit_user' => 'Edit User',
-                        'akses_master_hapus_user' => 'Hapus User',
-                        'akses_daftar_input_monitoring' => 'Daftar Input Monitoring',
-                        'akses_tambah_input_monitoring' => 'Tambah Input Monitoring',
-                        'akses_edit_input_monitoring' => 'Edit Input Monitoring',
-                        'akses_hapus_input_monitoring' => 'Hapus Input Monitoring',
-                        'akses_cetak_barcode' => 'Cetak Barcode',
-                        'akses_laporan_shift' => 'Laporan Shift',
-                    ];
-
+                ->addColumn('izin', function ($row) use ($izinList) {
                     $hasil = [];
 
-                    // Izin statis
                     foreach ($izinList as $key => $label) {
-                        $hasil[] = ($row->{$key} ?? false) ? "✅ $label" : "❌ $label";
-                    }
-
-                    // Izin dinamis berdasarkan parameter
-                    foreach ($parameters as $parameter) {
-                        $key = 'akses_input_param' . $parameter->id;
-                        $label = "Input ({$parameter->simbol}| {$parameter->nama})";
-                        $hasil[] = ($row->{$key} ?? false) ? "✅ $label" : "❌ $label";
-                    }
-
-                    // Izin dinamis berdasarkan kategori parameter
-                    foreach ($kategori_parameters as $kategori) {
-                        $key = 'akses_monitoring_kategori' . Str::slug($kategori->id, '_');
-                        $label = "Monitoring Kategori ({$kategori->nama})";
-                        $hasil[] = ($row->{$key} ?? false) ? "✅ $label" : "❌ $label";
-                    }
-
-                    // Izin dinamis berdasarkan zona
-                    foreach ($zonas as $zona) {
-                        $key = 'akses_monitoring_zona' . Str::slug($zona->id, '_');
-                        $label = "Monitoring Zona ({$zona->nama})";
-                        $hasil[] = ($row->{$key} ?? false) ? "✅ $label" : "❌ $label";
+                        $aktif = $row->{$key} ?? false;
+                        $hasil[] = ($aktif ? "✅" : "❌") . " $label";
                     }
 
                     return implode('<br>', $hasil);
                 })
-
                 ->rawColumns(['aksi', 'izin'])
                 ->make(true);
         }
@@ -119,22 +55,15 @@ class RoleController extends Controller
         return view('role.index');
     }
 
-
     public function create()
     {
         if ($response = $this->checkIzin('akses_master_tambah_role')) {
             return $response;
         }
 
-        $parameters = Parameter::select(['id', 'nama', 'simbol'])->get();
-        $kategori_parameters = KategoriParameter::select(['id', 'nama'])->get();
-        $zonas = Zona::select(['id', 'nama'])->get();
+        $semua_akses = Role::semua_akses();
 
-        return view('role.create', compact(
-            'parameters',
-            'kategori_parameters',
-            'zonas',
-        ));
+        return view('role.create', compact('semua_akses'));
     }
 
     public function store(Request $request)
@@ -148,67 +77,8 @@ class RoleController extends Controller
             'nama' => 'required|string|max:255|unique:roles,nama',
         ]);
 
-        // Daftar seluruh nama izin statis
-        $izinList = [
-            'akses_master_daftar_kategori_parameter',
-            'akses_master_tambah_kategori_parameter',
-            'akses_master_edit_kategori_parameter',
-            'akses_master_hapus_kategori_parameter',
-            'akses_master_daftar_satuan',
-            'akses_master_tambah_satuan',
-            'akses_master_edit_satuan',
-            'akses_master_hapus_satuan',
-            'akses_master_daftar_jenis_pilihan_kualitatif',
-            'akses_master_tambah_jenis_pilihan_kualitatif',
-            'akses_master_edit_jenis_pilihan_kualitatif',
-            'akses_master_hapus_jenis_pilihan_kualitatif',
-            'akses_master_daftar_parameter',
-            'akses_master_tambah_parameter',
-            'akses_master_edit_parameter',
-            'akses_master_hapus_parameter',
-            'akses_master_daftar_zona',
-            'akses_master_tambah_zona',
-            'akses_master_edit_zona',
-            'akses_master_hapus_zona',
-            'akses_master_daftar_titik_pengamatan',
-            'akses_master_tambah_titik_pengamatan',
-            'akses_master_edit_titik_pengamatan',
-            'akses_master_hapus_titik_pengamatan',
-            'akses_master_daftar_role',
-            'akses_master_tambah_role',
-            'akses_master_edit_role',
-            'akses_master_hapus_role',
-            'akses_master_daftar_user',
-            'akses_master_tambah_user',
-            'akses_master_edit_user',
-            'akses_master_hapus_user',
-            'akses_daftar_input_monitoring',
-            'akses_tambah_input_monitoring',
-            'akses_edit_input_monitoring',
-            'akses_hapus_input_monitoring',
-            'akses_cetak_barcode',
-            'akses_laporan_shift',
-        ];
-
-        // Tambahkan parameter dinamis
-        $parameters = Parameter::select(['id', 'nama', 'simbol'])->get();
-        foreach ($parameters as $parameter) {
-            $izinList[] = 'akses_input_param' . $parameter->id;
-        }
-
-        // Tambahkan kategori parameter dinamis
-        $kategori_parameters = KategoriParameter::select(['id', 'nama'])->get();
-        foreach ($kategori_parameters as $kategori) {
-            $slug = Str::slug($kategori->id, '_');
-            $izinList[] = 'akses_monitoring_kategori' . $slug;
-        }
-
-        // Tambahkan zona dinamis
-        $zonas = Zona::select(['id', 'nama'])->get();
-        foreach ($zonas as $zona) {
-            $slug = Str::slug($zona->id, '_');
-            $izinList[] = 'akses_monitoring_zona' . $slug;
-        }
+        // Daftar seluruh nama izin statis & dinamis
+        $izinList = Role::semua_akses2();
 
         // Siapkan data yang akan disimpan
         foreach ($izinList as $izin) {
@@ -228,17 +98,13 @@ class RoleController extends Controller
             return $response;
         }
 
-        $parameters = Parameter::select(['id', 'nama', 'simbol'])->get();
-        $kategori_parameters = KategoriParameter::select(['id', 'nama'])->get();
-        $zonas = Zona::select(['id', 'nama'])->get();
+        $semua_akses = Role::semua_akses();
 
-        return view('role.edit', compact('role', 'parameters', 'kategori_parameters', 'zonas'));
+        return view('role.edit', compact('role', 'semua_akses'));
     }
 
     public function update(Request $request, Role $role)
     {
-        // return $request;
-
         if ($response = $this->checkIzin('akses_master_edit_role')) {
             return $response;
         }
@@ -248,67 +114,8 @@ class RoleController extends Controller
             'nama' => 'required|string|max:255|unique:roles,nama,' . $role->id,
         ]);
 
-        // Daftar izin statis
-        $izinList = [
-            'akses_master_daftar_kategori_parameter',
-            'akses_master_tambah_kategori_parameter',
-            'akses_master_edit_kategori_parameter',
-            'akses_master_hapus_kategori_parameter',
-            'akses_master_daftar_satuan',
-            'akses_master_tambah_satuan',
-            'akses_master_edit_satuan',
-            'akses_master_hapus_satuan',
-            'akses_master_daftar_jenis_pilihan_kualitatif',
-            'akses_master_tambah_jenis_pilihan_kualitatif',
-            'akses_master_edit_jenis_pilihan_kualitatif',
-            'akses_master_hapus_jenis_pilihan_kualitatif',
-            'akses_master_daftar_parameter',
-            'akses_master_tambah_parameter',
-            'akses_master_edit_parameter',
-            'akses_master_hapus_parameter',
-            'akses_master_daftar_zona',
-            'akses_master_tambah_zona',
-            'akses_master_edit_zona',
-            'akses_master_hapus_zona',
-            'akses_master_daftar_titik_pengamatan',
-            'akses_master_tambah_titik_pengamatan',
-            'akses_master_edit_titik_pengamatan',
-            'akses_master_hapus_titik_pengamatan',
-            'akses_master_daftar_role',
-            'akses_master_tambah_role',
-            'akses_master_edit_role',
-            'akses_master_hapus_role',
-            'akses_master_daftar_user',
-            'akses_master_tambah_user',
-            'akses_master_edit_user',
-            'akses_master_hapus_user',
-            'akses_daftar_input_monitoring',
-            'akses_tambah_input_monitoring',
-            'akses_edit_input_monitoring',
-            'akses_hapus_input_monitoring',
-            'akses_cetak_barcode',
-            'akses_laporan_shift',
-        ];
-
-        // Tambahkan izin dinamis berdasarkan parameter
-        $parameters = Parameter::select(['id', 'nama', 'simbol'])->get();
-        foreach ($parameters as $parameter) {
-            $izinList[] = 'akses_input_param' . $parameter->id;
-        }
-
-        // Tambahkan izin dinamis berdasarkan kategori parameter
-        $kategori_parameters = KategoriParameter::select(['id', 'nama'])->get();
-        foreach ($kategori_parameters as $kategori) {
-            $slug = Str::slug($kategori->id, '_');
-            $izinList[] = 'akses_monitoring_kategori' . $slug;
-        }
-
-        // Tambahkan izin dinamis berdasarkan zona
-        $zonas = Zona::select(['id', 'nama'])->get();
-        foreach ($zonas as $zona) {
-            $slug = Str::slug($zona->id, '_');
-            $izinList[] = 'akses_monitoring_zona' . $slug;
-        }
+        // Daftar izin statis & dinamis
+        $izinList = Role::semua_akses2();
 
         // Simpan status tiap izin (true jika dicentang, false jika tidak)
         foreach ($izinList as $izin) {

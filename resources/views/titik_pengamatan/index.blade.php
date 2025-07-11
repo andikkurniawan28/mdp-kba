@@ -29,6 +29,7 @@
                                 {{-- <th>Satuan</th> --}}
                                 <th>Keterangan</th>
                                 <th>Parameter</th> <!-- tambahkan ini -->
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -82,6 +83,12 @@
                         orderable: false,
                         searchable: false
                     }, // ini baru
+                    {
+                        data: 'status_aktif',
+                        name: 'status_aktif',
+                        orderable: false,
+                        searchable: false
+                    },
                     {
                         data: 'aksi',
                         name: 'aksi',

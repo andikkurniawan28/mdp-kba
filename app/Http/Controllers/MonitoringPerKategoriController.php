@@ -87,6 +87,7 @@ class MonitoringPerKategoriController extends Controller
                     ->with('satuan:id,simbol');
             }
         ])
+        ->where('aktif', 1)
         ->orderBy('urutan', 'asc')
         ->get()
         ->map(function ($titik) {
@@ -107,6 +108,7 @@ class MonitoringPerKategoriController extends Controller
             // Ambil data monitoring
             $monitorings = Monitoring::where('titik_pengamatan_id', $titik->id)
                 ->where('periode', session('periode'))
+                ->where('diverifikasi', 1)
                 ->orderByDesc('periode')
                 ->orderByDesc('jam')
                 ->get();

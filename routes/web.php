@@ -14,6 +14,7 @@ use App\Http\Controllers\LaporanShiftController;
 use App\Http\Controllers\MonitoringAllController;
 use App\Http\Controllers\EksternalInputController;
 use App\Http\Controllers\TitikPengamatanController;
+use App\Http\Controllers\VerifikasiMandorController;
 use App\Http\Controllers\KategoriParameterController;
 use App\Http\Controllers\MonitoringPerZonaController;
 use App\Http\Controllers\InputMonitoringLogController;
@@ -65,3 +66,5 @@ Route::get('/cetak_barcode/{zona_id}', [CetakBarcodeController::class, 'index'])
 Route::post('/cetak_barcode', [CetakBarcodeController::class, 'proses'])->name('cetak_barcode.proses')->middleware(['auth']);
 Route::get('/laporan_shift/', [LaporanShiftController::class, 'index'])->name('laporan_shift.index')->middleware(['auth']);
 Route::get('/laporan_shift/{tanggal}/{shift}', [LaporanShiftController::class, 'proses'])->name('laporan_shift.proses')->middleware(['auth']);
+Route::get('/verifikasi_mandor', [VerifikasiMandorController::class, 'index'])->name('verifikasi_mandor.index')->middleware(['auth']);
+Route::post('/verifikasi_mandor', [VerifikasiMandorController::class, 'proses'])->name('verifikasi_mandor.proses')->middleware(['auth']);

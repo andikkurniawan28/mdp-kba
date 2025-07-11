@@ -51,6 +51,11 @@
                         <input name="lebar" id="lebar" class="form-control" class="form-control" value="{{ $titik_pengamatan->lebar }}"></input>
                     </div>
 
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="aktif" name="aktif" value="1" {{ $titik_pengamatan->aktif ? 'checked' : '' }}>
+                        <label class="form-check-label" for="aktif">Aktif</label>
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label">Pilih Parameter</label>
                         <div class="row">

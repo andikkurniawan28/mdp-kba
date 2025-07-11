@@ -83,6 +83,7 @@ class MonitoringPerZonaController extends Controller
             }
         ])
             ->where('zona_id', $zona_id)
+            ->where('aktif', 1)
             ->orderBy('urutan', 'asc')
             ->get()
             ->map(function ($titik) {
@@ -102,6 +103,7 @@ class MonitoringPerZonaController extends Controller
                 // Ambil monitoring
                 $monitorings = Monitoring::where('titik_pengamatan_id', $titik->id)
                     ->where('periode', session('periode'))
+                    ->where('diverifikasi', 1)
                     ->orderByDesc('periode')
                     ->orderByDesc('jam')
                     ->get();

@@ -46,7 +46,8 @@ class LaporanShiftController extends Controller
                 'titik_pengamatans' => []
             ];
 
-            foreach ($zona->titik_pengamatans as $titik) {
+            // foreach ($zona->titik_pengamatans as $titik) {
+            foreach ($zona->titik_pengamatans->where('aktif', 1) as $titik) {
                 // Ambil parameter yang relevan
                 $parameters = $titik->parameter_titik_pengamatans->pluck('parameter')->unique('id');
 
@@ -60,6 +61,7 @@ class LaporanShiftController extends Controller
                 $query = DB::table('monitorings')
                     ->select($selectedFields)
                     ->where('titik_pengamatan_id', $titik->id)
+                    ->where('diverifikasi', 1)
                     ->where('periode', $tanggal);
 
                 if ($shift == 3 || $shift == 0) {

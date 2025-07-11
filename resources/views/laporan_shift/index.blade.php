@@ -86,7 +86,7 @@
                         let html = `
                         <h5 class="mb-2 text-white">Zona: ${zona.zona}</h5>
                         <div class="table-responsive">
-                        <table class="table table-bordered table-sm text-dark bg-white">
+                        <table class="table table-bordered table-sm table-hover text-dark bg-white">
                             <thead class="table-light">
                                 <tr>
                                     <th>Titik</th>`;

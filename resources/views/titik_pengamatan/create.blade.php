@@ -40,6 +40,11 @@
                         <input name="lebar" id="lebar" class="form-control" class="form-control" value="4"></input>
                     </div>
 
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="aktif" name="aktif" value="1" checked>
+                        <label class="form-check-label" for="aktif">Aktif</label>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-save"></i> Simpan
                     </button>

@@ -5,9 +5,14 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h4>Daftar Input Monitoring</h4>
-            <a href="{{ route('monitoring.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Tambah
-            </a>
+            <div class="btn-group">
+                <a href="{{ route('monitoring.create') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Tambah
+                </a>
+                {{-- <a href="{{ route('verifikasi_mandor.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-check2-circle"></i> Verifikasi Mandor
+                </a> --}}
+            </div>
         </div>
 
         <div class="card shadow-sm bg-light">
@@ -21,9 +26,9 @@
                                 <th>Periode</th>
                                 <th>Jam</th>
                                 <th>Kode</th>
-                                <th>Titik Pengamatan</th>
+                                <th>Titik</th>
                                 <th>Nilai</th>
-                                {{-- <th>Keterangan</th> --}}
+                                <th>Verifikasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -75,8 +80,10 @@
                         data: 'parameter',
                         name: 'parameter'
                     },
-                    // { data: 'satuan_nama', name: 'satuan_nama' },
-                    // { data: 'keterangan', name: 'keterangan' },
+                    {
+                        data: 'diverifikasi',
+                        name: 'diverifikasi'
+                    },
                     {
                         data: 'aksi',
                         name: 'aksi',

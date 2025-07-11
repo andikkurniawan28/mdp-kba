@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('periode')->index();
             $table->time('jam')->index();
             $table->foreignId('titik_pengamatan_id')->constrained();
+            $table->boolean('diverifikasi')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
