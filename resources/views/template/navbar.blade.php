@@ -22,6 +22,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
 
+                @if (auth()->check() && auth()->user()->role->izin_akses_monitoring == 1)
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle fw-semibold" href="#" id="monitoringMenu" role="button"
                         data-bs-toggle="dropdown">
@@ -65,9 +66,10 @@
                         @endforeach
                     </ul>
                 </li>
+                @endif
 
                 {{-- MENU INPUT --}}
-                {{-- @if (auth()->check() && auth()->user()->role->izin_akses_input) --}}
+                @if (auth()->check() && auth()->user()->role->izin_akses_input == 1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" id="transaksiMenu" role="button"
                             data-bs-toggle="dropdown">
@@ -87,7 +89,9 @@
                             </li>
                         </ul>
                     </li>
+                @endif
 
+                @if (auth()->check() && auth()->user()->role->akses_cetak_barcode == 1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" id="cetakBarcodeMenu" role="button"
                             data-bs-toggle="dropdown">
@@ -103,10 +107,10 @@
                             </li>
                         </ul>
                     </li>
-                {{-- @endif --}}
+                @endif
 
                 {{-- MENU LAPORAN --}}
-                {{-- @if (auth()->check() && auth()->user()->role->izin_akses_laporan) --}}
+                @if (auth()->check() && auth()->user()->role->izin_akses_laporan == 1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" id="laporanMenu" role="button"
                             data-bs-toggle="dropdown">
@@ -120,10 +124,10 @@
                             </li>
                         </ul>
                     </li>
-                {{-- @endif --}}
+                @endif
 
                 {{-- MENU MASTER --}}
-                {{-- @if (auth()->check() && auth()->user()->role->izin_akses_master) --}}
+                @if (auth()->check() && auth()->user()->role->izin_akses_master == 1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" id="masterMenu" role="button"
                             data-bs-toggle="dropdown">
@@ -148,7 +152,7 @@
                                         class="bi bi-person-circle"></i> User</a></li>
                         </ul>
                     </li>
-                {{-- @endif --}}
+                @endif
 
                 {{-- MENU DOKUMENTASI --}}
                 {{-- <li class="nav-item dropdown">

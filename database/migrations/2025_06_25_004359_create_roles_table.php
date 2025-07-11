@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->unique();
-            // $table->boolean('izin_akses_input')->default(1);
-            // $table->boolean('izin_akses_laporan')->default(1);
-            // $table->boolean('izin_akses_master')->default(1);
+            $table->boolean('izin_akses_monitoring')->default(1);
+            $table->boolean('izin_akses_input')->default(1);
+            $table->boolean('izin_akses_laporan')->default(1);
+            $table->boolean('izin_akses_master')->default(1);
             $table->boolean('akses_master_daftar_kategori_parameter')->default(1);
             $table->boolean('akses_master_tambah_kategori_parameter')->default(1);
             $table->boolean('akses_master_edit_kategori_parameter')->default(1);

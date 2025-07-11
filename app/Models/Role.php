@@ -17,6 +17,11 @@ class Role extends Model
     public static function semua_akses()
     {
         $data = [
+            'izin_akses_monitoring' => 'Akses Menu Monitoring',
+            'izin_akses_input' => 'Akses Menu Input',
+            'akses_cetak_barcode' => 'Cetak Barcode',
+            'izin_akses_laporan' => 'Akses Menu Laporan',
+            'izin_akses_master' => 'Akses Menu Master',
             'akses_master_daftar_kategori_parameter' => 'Daftar Role',
             'akses_master_tambah_kategori_parameter' => 'Tambah Role',
             'akses_master_edit_kategori_parameter' => 'Edit Role',
@@ -53,7 +58,6 @@ class Role extends Model
             'akses_tambah_input_monitoring' => 'Tambah Input Monitoring',
             'akses_edit_input_monitoring' => 'Edit Input Monitoring',
             'akses_hapus_input_monitoring' => 'Hapus Input Monitoring',
-            'akses_cetak_barcode' => 'Cetak Barcode',
             'akses_laporan_shift' => 'Laporan Shift',
             'akses_verifikasi_mandor' => 'Verifikasi Mandor',
         ];
@@ -90,6 +94,11 @@ class Role extends Model
     {
         $izinList = [
             // Izin statis
+            'izin_akses_monitoring',
+            'izin_akses_input',
+            'akses_cetak_barcode',
+            'izin_akses_laporan',
+            'izin_akses_master',
             'akses_master_daftar_kategori_parameter',
             'akses_master_tambah_kategori_parameter',
             'akses_master_edit_kategori_parameter',
@@ -126,7 +135,6 @@ class Role extends Model
             'akses_tambah_input_monitoring',
             'akses_edit_input_monitoring',
             'akses_hapus_input_monitoring',
-            'akses_cetak_barcode',
             'akses_laporan_shift',
             'akses_verifikasi_mandor',
         ];

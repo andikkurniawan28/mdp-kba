@@ -148,4 +148,6 @@
             border: 0;
         }
     </style>
+
+    @include('monitoring.perhitungan')
 @endsection
